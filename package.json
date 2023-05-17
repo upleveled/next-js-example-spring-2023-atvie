@@ -1,0 +1,29 @@
+{
+  "name": "next-js-example-spring-2023-vienna-austria",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "13.4.2",
+    "randomcolor": "^0.6.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "sass": "^1.62.1",
+    "sharp": "^0.32.1"
+  },
+  "devDependencies": {
+    "@ts-safeql/eslint-plugin": "^1.1.3",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
+    "eslint-config-upleveled": "^4.3.2",
+    "libpg-query": "^15.0.2",
+    "stylelint": "^15.6.2",
+    "stylelint-config-upleveled": "^1.0.2",
+    "typescript": "^5.0.4"
+  }
+}

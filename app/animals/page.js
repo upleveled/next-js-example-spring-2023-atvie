@@ -14,7 +14,7 @@ export default function AnimalsPage() {
       {animals.map((animal) => {
         return (
           <div key={`animal-div-${animal.id}`}>
-            <Link href={`/animals/${animal.name}`}>{animal.name}</Link>
+            <Link href={`/animals/${animal.id}`}>{animal.name}</Link>
             <br />
             <Image
               src={`/images/${animal.name}.png`}

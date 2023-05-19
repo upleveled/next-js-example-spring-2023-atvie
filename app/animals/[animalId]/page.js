@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { getAnimalByName } from '../../../database/animals';
+import { getAnimalById } from '../../../database/animals';
 
 export const dynamic = 'force-dynamic';
 
-export default function FarmPage({ params }) {
-  const singleAnimal = getAnimalByName(params.name);
+export default function AnimalPage({ params }) {
+  const singleAnimal = getAnimalById(Number(params.animalId)); // Convert the string into a number
 
   console.log(singleAnimal);
 

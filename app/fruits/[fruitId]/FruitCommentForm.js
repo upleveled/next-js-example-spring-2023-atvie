@@ -1,0 +1,35 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { createOrUpdateComment } from './actions';
+
+// {id: number, comment: string}[]]
+
+export default function FruitCommentForm(props) {
+  const [comment, setComment] = useState('');
+  const router = useRouter();
+
+  return (
+    // WARNING: in order to use Server Action you need to update the next.js config with serverActions: true,
+    // when using Server Actions we don't need prevent the default of the form
+    <form>
+      <textarea
+        value={comment}
+        onChange={(event) => {
+          setComment(event.currentTarget.value);
+        }}
+      />
+      {/* Instead of using onClick we use formAction */}
+
+      <button
+        formAction={async () => {
+          router.refresh();
+          await createOrUpdateComment(props.fruitId, comment);
+        }}
+      >
+        Update Comment
+      </button>
+    </form>
+  );
+}

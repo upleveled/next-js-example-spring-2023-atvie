@@ -1,6 +1,8 @@
 import './globals.scss';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
+import { CookieBanner } from './CookieBanner';
+import style from './layout.module.scss';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -13,8 +15,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav>
-          <Link href="/">home</Link> <Link href="/animals">animals</Link>
+        <CookieBanner />
+        <nav className={style.navigator}>
+          <Link href="/">home</Link> <Link href="/animals">animals</Link>{' '}
+          <Link href="/fruits">fruits</Link>
+          {Math.floor(Math.random() * 10)}
         </nav>
         {children}
       </body>

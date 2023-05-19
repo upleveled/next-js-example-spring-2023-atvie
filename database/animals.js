@@ -11,6 +11,6 @@ export const animals = [
   { id: 5, name: 'kunfu', type: 'panda', object: 'food' },
 ];
 
-export function getAnimalByName(name) {
-  return animals.find((animal) => animal.name === name);
+export function getAnimalById(id) {
+  return animals.find((animal) => animal.id === id);
 }

@@ -1,10 +1,7 @@
 import './globals.scss';
-import { Inter } from 'next/font/google';
 import Link from 'next/link';
 import { CookieBanner } from './CookieBanner';
 import style from './layout.module.scss';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: { default: 'Next Example | UpLeveled', template: '%s | UpLeveled' },
@@ -14,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <CookieBanner />
         <nav className={style.navigator}>
           <Link href="/">home</Link> <Link href="/animals">animals</Link>{' '}

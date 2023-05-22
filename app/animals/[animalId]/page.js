@@ -15,13 +15,13 @@ export default function AnimalPage({ params }) {
 
   return (
     <main>
-      <h1>{singleAnimal.name}</h1>
+      <h1>{singleAnimal.firstName}</h1>
       <Image
-        src={`/images/${singleAnimal.name}.png`}
+        src={`/images/${singleAnimal.firstName}.png`}
         width={200}
         height={200}
       />
-      this is a {singleAnimal.type} carrying a {singleAnimal.object}
+      this is a {singleAnimal.type} carrying a {singleAnimal.accessory}
     </main>
   );
 }

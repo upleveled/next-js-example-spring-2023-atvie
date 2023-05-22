@@ -1,7 +1,13 @@
 import './globals.scss';
+import { Roboto_Mono } from 'next/font/google';
 import Link from 'next/link';
 import { CookieBanner } from './CookieBanner';
 import style from './layout.module.scss';
+
+export const robotoMono = Roboto_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const metadata = {
   title: { default: 'Next Example | UpLeveled', template: '%s | UpLeveled' },
@@ -10,7 +16,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={robotoMono.className}>
       <body>
         <CookieBanner />
         <nav className={style.navigator}>

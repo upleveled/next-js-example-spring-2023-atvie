@@ -14,10 +14,10 @@ export default function AnimalsPage() {
       {animals.map((animal) => {
         return (
           <div key={`animal-div-${animal.id}`}>
-            <Link href={`/animals/${animal.id}`}>{animal.name}</Link>
+            <Link href={`/animals/${animal.id}`}>{animal.firstName}</Link>
             <br />
             <Image
-              src={`/images/${animal.name}.png`}
+              src={`/images/${animal.firstName}.png`}
               width={100}
               height={100}
             />

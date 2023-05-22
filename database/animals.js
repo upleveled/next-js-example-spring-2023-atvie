@@ -4,11 +4,11 @@
 // fs.readFile('../app/page.js', () => {});
 
 export const animals = [
-  { id: 1, name: 'gigi', type: 'cat', object: 'rat' },
-  { id: 2, name: 'freddy', type: 'dog', object: 'biscuit' },
-  { id: 3, name: 'bob', type: 'trashpanda', object: 'candy' },
-  { id: 4, name: 'nagini', type: 'snake', object: 'band' },
-  { id: 5, name: 'kunfu', type: 'panda', object: 'food' },
+  { id: 1, firstName: 'gigi', type: 'cat', accessory: 'rat' },
+  { id: 2, firstName: 'freddy', type: 'dog', accessory: 'biscuit' },
+  { id: 3, firstName: 'bob', type: 'trashpanda', accessory: 'candy' },
+  { id: 4, firstName: 'nagini', type: 'snake', accessory: 'band' },
+  { id: 5, firstName: 'kunfu', type: 'panda', accessory: 'food' },
 ];
 
 export function getAnimalById(id) {

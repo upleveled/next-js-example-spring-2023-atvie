@@ -4,10 +4,8 @@ import { getAnimalById } from '../../../database/animals';
 
 export const dynamic = 'force-dynamic';
 
-export default function AnimalPage({ params }) {
-  const singleAnimal = getAnimalById(Number(params.animalId)); // Convert the string into a number
-
-  console.log(singleAnimal);
+export default async function AnimalPage({ params }) {
+  const singleAnimal = await getAnimalById(Number(params.animalId));
 
   if (!singleAnimal) {
     notFound();

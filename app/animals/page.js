@@ -1,13 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { animals } from '../../database/animals';
+import { getAnimals } from '../../database/animals';
 
 export const metadata = {
   title: 'Animals page',
   description: 'My favorite animals',
 };
 
-export default function AnimalsPage() {
+export default async function AnimalsPage() {
+  const animals = await getAnimals();
+
   return (
     <main>
       This are my animals

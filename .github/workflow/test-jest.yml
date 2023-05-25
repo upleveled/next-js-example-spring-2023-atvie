@@ -1,0 +1,28 @@
+name: Jest tests
+on: push
+
+jobs:
+  build:
+    name: Jest tests
+    # Tell the action to use the latest
+    # version of Ubuntu (a Linux flavor)
+    # https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
+    runs-on: ubuntu-latest
+    steps:
+      # Use the official Checkout action (clones the GitHub repo):
+      # https://github.com/actions/checkout
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: '8'
+      # Use the official setup-node action (sets up Node.js):
+      # https://github.com/actions/setup-node
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      # Run the Jest unit tests
+      - run: pnpm jest

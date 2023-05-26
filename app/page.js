@@ -6,7 +6,7 @@ export default function HomePage() {
   return (
     <main>
       <GenerateButton />
-      Hello UpLeveled
+      <h1>Hello UpLeveled</h1>
       <br />
       {/* This is not optimized please don't use it */}
       <img src="/images/cat.jpeg" alt="cat sleeping" width="500" />

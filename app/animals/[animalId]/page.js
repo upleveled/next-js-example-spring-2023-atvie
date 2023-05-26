@@ -16,6 +16,7 @@ export default async function AnimalPage({ params }) {
       <h1>{singleAnimal.firstName}</h1>
       <Image
         src={`/images/${singleAnimal.firstName}.png`}
+        alt={`${singleAnimal.firstName}'s profile picture`}
         width={200}
         height={200}
       />

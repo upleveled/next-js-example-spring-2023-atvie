@@ -53,7 +53,9 @@ test('navigation test', async ({ page }) => {
   await expect(page.getByText('This are my animals')).toBeVisible();
 
   // use caret ^ to find all elements with 'data-test-id=animal-type-'
-  await expect(page.locator('[data-test-id^="animal-type-"]')).toHaveCount(5);
+  await expect(page.locator('[data-test-id^="animal-type-"]')).toHaveCount(
+    animals.length,
+  );
 
   await expect(page.locator('[data-test-id^="animal-type-"]')).toHaveText(
     animals.map((animal) => animal.firstName),

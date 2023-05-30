@@ -65,22 +65,21 @@ test('navigation test', async ({ page }) => {
     page.locator('[data-test-id^="animal-type-"] >> img'),
   ).toHaveCount(5);
 
-  await Promise.all(
-    animals.map(async (animal) => {
-      await expect(
-        page.getByRole('link', { name: animal.firstName }),
-      ).toBeVisible();
-      await expect(page.getByAltText(animal.firstName)).toBeVisible();
-    }),
-  );
+  for (const animal of animals) {
+    await expect(
+      page.getByRole('link', { name: animal.firstName }),
+    ).toBeVisible();
+    await expect(page.getByAltText(animal.firstName)).toBeVisible();
+  }
 
   await page.getByRole('link', { name: 'fruits' }).click();
 
   await expect(page).toHaveURL('http://localhost:3000/fruits');
 
-  for (let i = 0; i < fruits.length; i++) {
-    await expect(page.getByRole('link', { name: fruits[i] })).toBeVisible();
+  for (const fruit of fruits) {
+    await expect(page.getByRole('link', { name: fruit })).toBeVisible();
   }
+
   await page.getByRole('link', { name: fruits[0] }).click();
 
   await expect(page).toHaveURL('http://localhost:3000/fruits/1');

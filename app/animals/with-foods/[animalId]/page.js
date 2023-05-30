@@ -5,6 +5,7 @@ import {
   getAnimalsWithFoods,
   getAnimalWithFoodsById,
 } from '../../../../database/animals';
+import { getAnimalWithFoods } from '../../../../util/dataStructure';
 
 export const dynamic = 'force-dynamic';
 
@@ -20,19 +21,7 @@ export default async function AnimalPage({ params }) {
     notFound();
   }
 
-  const animalWithFoods = {
-    id: animalsFoods[0].animalId,
-    firstName: animalsFoods[0].animalFirstName,
-    type: animalsFoods[0].animalType,
-    accessory: animalsFoods[0].animalAccessory,
-    animalFoods: animalsFoods.map((animalFood) => {
-      return {
-        id: animalFood.foodId,
-        name: animalFood.foodName,
-        type: animalFood.foodType,
-      };
-    }),
-  };
+  const animalWithFoods = getAnimalWithFoods(animalsFoods);
 
   return (
     <main>

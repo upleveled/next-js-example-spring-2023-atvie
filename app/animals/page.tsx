@@ -23,7 +23,7 @@ export default async function AnimalsPage() {
             <br />
             <Image
               src={`/images/${animal.firstName}.png`}
-              alt={`${animal.firstName}'s profile picture`}
+              alt={animal.firstName}
               width={100}
               height={100}
             />

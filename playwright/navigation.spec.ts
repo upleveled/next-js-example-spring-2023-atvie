@@ -70,9 +70,7 @@ test('navigation test', async ({ page }) => {
       await expect(
         page.getByRole('link', { name: animal.firstName }),
       ).toBeVisible();
-      await expect(
-        page.getByAltText(`${animal.firstName}'s profile picture`),
-      ).toBeVisible();
+      await expect(page.getByAltText(animal.firstName)).toBeVisible();
     }),
   );
 

@@ -1,15 +1,26 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { createOrUpdateComment } from './actions';
 import style from './FruitCommentForm.module.scss';
 
 // {id: number, comment: string}[]]
 
-export default function FruitCommentForm(props) {
+type Props = {
+  fruitId: number;
+};
+
+export default function FruitCommentForm(props: Props) {
   const [comment, setComment] = useState('');
+  // If you need to have a type parameter for the useState (either
+  // undefined or a string)
+  // const [comment, setComment] = useState<undefined | string>();
   const router = useRouter();
+
+  function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
+    setComment(event.currentTarget.value);
+  }
 
   return (
     // WARNING: in order to use Server Action you need to update the next.js config with serverActions: true,
@@ -18,9 +29,7 @@ export default function FruitCommentForm(props) {
       <textarea
         className={style.textArea}
         value={comment}
-        onChange={(event) => {
-          setComment(event.currentTarget.value);
-        }}
+        onChange={handleChange}
       />
       {/* Instead of using onClick we use formAction */}
       <br />

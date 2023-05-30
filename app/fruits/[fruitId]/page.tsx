@@ -8,7 +8,7 @@ type Props = {
   params: { fruitId: string };
 };
 
-type Cookie = {
+export type CookieCommentItem = {
   id: number;
   comment?: string;
 };
@@ -21,11 +21,11 @@ export default function FruitPage(props: Props) {
   }
 
   const fruitCommentsCookie = getCookie('fruitComments');
-  const fruitComments: Cookie[] = !fruitCommentsCookie
+  const fruitComments = !fruitCommentsCookie
     ? []
     : parseJson(fruitCommentsCookie);
 
-  const fruitToUpdate = fruitComments.find((fruitComment) => {
+  const fruitToUpdate = fruitComments?.find((fruitComment) => {
     return fruitComment.id === fruit.id;
   });
 

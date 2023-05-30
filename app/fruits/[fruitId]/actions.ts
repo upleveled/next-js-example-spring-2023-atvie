@@ -4,7 +4,7 @@ import { cookies } from 'next/headers';
 import { getCookie } from '../../../util/cookies';
 import { parseJson } from '../../../util/json';
 
-export async function createOrUpdateComment(fruitId, comment) {
+export async function createOrUpdateComment(fruitId: number, comment: string) {
   // 1. get the current cookie
   // This get the cookies from the Request Headers
   const fruitCommentsCookie = getCookie('fruitComments');
@@ -19,7 +19,7 @@ export async function createOrUpdateComment(fruitId, comment) {
   // 3. we edit the object
 
   // We get the object for the fruit in cookies or undefined
-  const fruitToUpdate = fruitComments.find((fruitComment) => {
+  const fruitToUpdate = fruitComments?.find((fruitComment) => {
     return fruitComment.id === fruitId;
   });
 
@@ -33,7 +33,10 @@ export async function createOrUpdateComment(fruitId, comment) {
     // case C: the cookie is defined but doesn't have the fruit in the action
     // if we are in fruit 1
     // [{id:2, comment:"abc"}]
-    fruitComments.push({
+    //
+    // WARNING: Be careful of using the exclamation mark
+    // Only use it if you know that you want the error!
+    fruitComments!.push({
       // we need insert the fruitCommnet
       id: fruitId,
       comment,

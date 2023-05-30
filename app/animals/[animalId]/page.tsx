@@ -4,8 +4,14 @@ import { getAnimalById } from '../../../database/animals';
 
 export const dynamic = 'force-dynamic';
 
-export default async function AnimalPage({ params }) {
-  const singleAnimal = await getAnimalById(Number(params.animalId));
+type Props = {
+  params: {
+    animalId: string;
+  };
+};
+
+export default async function AnimalPage(props: Props) {
+  const singleAnimal = await getAnimalById(Number(props.params.animalId));
 
   if (!singleAnimal) {
     notFound();
@@ -16,6 +22,7 @@ export default async function AnimalPage({ params }) {
       <h1>{singleAnimal.firstName}</h1>
       <Image
         src={`/images/${singleAnimal.firstName}.png`}
+        alt={singleAnimal.firstName}
         width={200}
         height={200}
       />

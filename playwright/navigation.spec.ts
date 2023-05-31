@@ -71,7 +71,7 @@ test('navigation test', async ({ page }) => {
   await page.getByRole('link', { name: 'avocado' }).click();
   await expect(page).toHaveURL('http://localhost:3000/fruits/1');
 
-  await page.getByRole('textbox').fill('test');
+  await page.getByRole('textbox').fill('asd');
 
   await page.getByRole('button', { name: 'Update comment' }).click();
 

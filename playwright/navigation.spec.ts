@@ -54,7 +54,7 @@ test('navigation test', async ({ page }) => {
   await expect(page.locator('[data-test-id^="animal-type-"]')).toHaveText(
     animals.map((animal) => animal.firstName),
   );
-  // Use >> for for direct descendant of the locator
+  // Use >> for direct descendant of the locator
   await expect(
     page.locator('[data-test-id^="animal-type-"] >> img'),
   ).toHaveCount(5);

@@ -21,11 +21,7 @@ export default async function AnimalPage({ params }) {
     notFound();
   }
 
-  console.log(animalsFoods);
-
   const animalWithFoods = getAnimalWithFoods(animalsFoods);
-
-  console.log(animalWithFoods);
 
   return (
     <main>

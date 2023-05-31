@@ -1,0 +1,58 @@
+name: Playwright test
+on: push
+
+jobs:
+  e2e-tests:
+    name: Playwright test
+    runs-on: ubuntu-latest # or macos-latest, windows-latest
+    # Update env variables with your own database credentials
+    env:
+      PGHOST: localhost
+      PGDATABASE: next_js_example_spring_2023
+      PGUSERNAME: next_js_example_spring_2023
+      PGPASSWORD: next_js_example_spring_2023
+    steps:
+      - name: Start preinstalled PostgreSQL on Ubuntu
+        run: |
+          sudo systemctl start postgresql.service
+          pg_isready
+      - name: Create database user
+        run: |
+          sudo -u postgres psql --command="CREATE USER next_js_example_spring_2023 PASSWORD 'next_js_example_spring_2023'" --command="\du"
+      - name: Create database and allow user
+        run: |
+          sudo -u postgres createdb --owner=next_js_example_spring_2023 next_js_example_spring_2023
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: '8'
+      # Use the official setup-node action (sets up Node.js):
+      # https://github.com/actions/setup-node
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Install SafeQL if not yet installed (eg. on Windows dev machines)
+        run: grep package.json -e '@ts-safeql/eslint-plugin' || pnpm add @ts-safeql/eslint-plugin libpg-query
+      - run: pnpm migrate up
+      # Also generates next-env.d.ts, required for tsc
+      - name: Build Next.js app
+        run: pnpm build
+      - name: Run TypeScript Compiler
+        run: pnpm tsc
+      - name: Run ESLint
+        run: pnpm eslint . --max-warnings 0
+      - name: Run Stylelint
+        run: pnpm stylelint '**/*.{css,scss,less,js,tsx}'
+      - name: Install Playwright
+        run: pnpm playwright install --with-deps chromium
+      - name: Run tests
+        run: pnpm playwright test
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: playwright-screenshots-videos
+          path: playwright/test-results/

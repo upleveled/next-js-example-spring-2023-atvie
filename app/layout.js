@@ -17,7 +17,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={robotoMono.className}>
-      <body>
+      <body style={{ backgroundColor: 'rgb(0, 31, 57)' }}>
         <CookieBanner />
         <nav className={style.navigator}>
           <Link href="/">home</Link> <Link href="/animals">animals</Link>{' '}

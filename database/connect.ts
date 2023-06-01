@@ -2,7 +2,9 @@ import 'server-only';
 import { config } from 'dotenv-safe';
 import postgres from 'postgres';
 
-config();
+// This loads all environment variables from a .env file
+// for all code after this line
+if (!process.env.FLY_IO) config();
 
 // Making a simple connection to Postgres
 // Next.js fast refresh increases database connection slot

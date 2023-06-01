@@ -1,4 +1,3 @@
-import { headers } from 'next/headers';
 import { cache } from 'react';
 import { Animal } from '../migrations/1684915044-createTableAnimals';
 import {

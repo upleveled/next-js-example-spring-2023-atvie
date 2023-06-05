@@ -1,7 +1,7 @@
 import 'server-only';
 import { config } from 'dotenv-safe';
 import { headers } from 'next/headers';
-import postgres, { PendingQuery } from 'postgres';
+import postgres from 'postgres';
 
 // This loads all environment variables from a .env file
 // for all code after this line

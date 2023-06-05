@@ -1,4 +1,3 @@
-import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
 import { getFruitById } from '../../../database/fruits';
 import { getCookie } from '../../../util/cookies';
@@ -15,8 +14,6 @@ export type CookieCommentItem = {
 };
 
 export default function FruitPage(props: Props) {
-  const x = headers();
-  x.forEach((a) => console.log(a));
   const fruit = getFruitById(Number(props.params.fruitId));
 
   if (!fruit) {

@@ -33,9 +33,9 @@ function connectOneTimeToDatabase() {
     });
   }
 
-  return async (strings: TemplateStringsArray, ...values: any) => {
+  return (...sqlQuery: [TemplateStringsArray, ...any[]]) => {
     headers();
-    return await globalThis.postgresSqlClient!(strings, ...values);
+    return globalThis.postgresSqlClient!(...sqlQuery);
   };
 }
 

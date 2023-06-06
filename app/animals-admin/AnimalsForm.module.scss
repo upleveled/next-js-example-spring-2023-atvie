@@ -1,0 +1,20 @@
+.button {
+  border: 1px solid;
+  cursor: pointer;
+  background-color: white;
+  color: rgb(0, 31, 57);
+  border-radius: 5px;
+
+  &:hover {
+    background-color: rgb(0, 31, 57);
+    color: white;
+  }
+}
+
+.inputDiv {
+  input {
+    background-color: rgb(248, 54, 112);
+    border-radius: 5px;
+    border: none;
+  }
+}

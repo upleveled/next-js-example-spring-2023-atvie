@@ -1,6 +1,5 @@
 import 'server-only';
 import { config } from 'dotenv-safe';
-import { headers } from 'next/headers';
 import postgres from 'postgres';
 
 // This loads all environment variables from a .env file

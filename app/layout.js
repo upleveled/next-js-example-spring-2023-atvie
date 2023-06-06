@@ -22,6 +22,8 @@ export default function RootLayout({ children }) {
         <nav className={style.navigator}>
           <Link href="/">home</Link> <Link href="/animals">animals</Link>{' '}
           <Link href="/fruits">fruits</Link>
+          <Link href="/animals-admin">admin</Link>
+          <Link href="/animals/paginated">paginated</Link>
           {Math.floor(Math.random() * 10)}
         </nav>
         {children}

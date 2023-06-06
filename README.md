@@ -66,3 +66,32 @@ psql -U <user name> <database name>
 ```bash
 sudo -u <user name> psql -U <user name> <database name>
 ```
+
+# API DESIGN
+
+```ts
+type Animal = {
+  id: number;
+  type: string;
+  firstName: string;
+  accessory: string | null;
+};
+
+type Error = {
+  message: string;
+};
+```
+
+```txt
+/
+ - GET => endpoints[]
+
+/animals
+ - GET =>       animal[]
+ - POST =>      animal   | error
+
+/animals/:id
+ - PUT =>       animal   | error
+ - DELETE =>    animal   | error
+ - GET =>       animal   | error
+```

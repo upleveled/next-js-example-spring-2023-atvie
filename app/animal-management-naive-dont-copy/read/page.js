@@ -7,6 +7,8 @@ export const metadata = {
   description: 'My favorite animals',
 };
 
+export const dynamic = 'force-dynamic';
+
 export default async function AnimalsPage() {
   const animals = await getAnimals();
 

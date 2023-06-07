@@ -33,12 +33,12 @@ function connectOneTimeToDatabase() {
     });
   }
 
-  return <PostgresType extends (Record<string, unknown> | undefined)[]>(
-    ...sqlQuery: [TemplateStringsArray, ...ParameterOrFragment<never>[]]
+  return ((
+    ...sqlParameters: Parameters<typeof globalThis.postgresSqlClient>
   ) => {
     headers();
-    return globalThis.postgresSqlClient<PostgresType>(...sqlQuery);
-  };
+    return globalThis.postgresSqlClient(...sqlParameters);
+  }) as typeof globalThis.postgresSqlClient;
 }
 
 // Connect to PostgreSQL

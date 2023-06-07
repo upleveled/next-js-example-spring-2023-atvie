@@ -1,6 +1,7 @@
 import 'server-only';
 import { config } from 'dotenv-safe';
-import postgres from 'postgres';
+import { headers } from 'next/headers';
+import postgres, { Sql } from 'postgres';
 
 // This loads all environment variables from a .env file
 // for all code after this line
@@ -17,13 +18,13 @@ if (!process.env.FLY_IO) config();
 // });
 
 declare module globalThis {
-  let postgresSqlClient: ReturnType<typeof postgres> | undefined;
+  let postgresSqlClient: Sql;
 }
 
 // Connect only once to the database
 // https://github.com/vercel/next.js/issues/7811#issuecomment-715259370
 function connectOneTimeToDatabase() {
-  if (!globalThis.postgresSqlClient) {
+  if (!('postgresSqlClient' in globalThis)) {
     globalThis.postgresSqlClient = postgres({
       transform: {
         ...postgres.camel,
@@ -32,7 +33,19 @@ function connectOneTimeToDatabase() {
     });
   }
 
-  return globalThis.postgresSqlClient;
+  // Wrap sql tagged template function to include the headers()function calls before each
+  // database operation
+  // This is necessary for Next.js to treat the page importing the database query
+  // function as a dynamic function, rather than a static one, and allows the correct
+  // handling of the pages during server - side rendering and subsequent dynamic
+  // behavior by Next.js
+  // https://github.com/vercel/next.js/discussions/50695
+  return ((
+    ...sqlParameters: Parameters<typeof globalThis.postgresSqlClient>
+  ) => {
+    headers();
+    return globalThis.postgresSqlClient(...sqlParameters);
+  }) as typeof globalThis.postgresSqlClient;
 }
 
 // Connect to PostgreSQL

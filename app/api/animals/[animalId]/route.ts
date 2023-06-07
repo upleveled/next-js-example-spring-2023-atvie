@@ -7,6 +7,9 @@ import {
 } from '../../../../database/animals';
 import { Animal, Error } from '../route';
 
+// Use 'force-dynamic' on pages using database queries in the server component to prevent your deployment to fail.
+export const dynamic = 'force-dynamic';
+
 type AnimalResponseBodyGet = { animal: Animal } | Error;
 type AnimalResponseBodyDelete = { animal: Animal } | Error;
 type AnimalResponseBodyPut = { animal: Animal } | Error;

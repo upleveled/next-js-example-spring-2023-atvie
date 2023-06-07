@@ -12,7 +12,7 @@ import postgres from 'postgres';
 //   },
 // });
 
-if (!process.env.POSTGRES_HOST) {
+if (!process.env.POSTGRES_URL) {
   config();
 }
 
@@ -29,6 +29,7 @@ function connectOneTimeToDatabase() {
       username: process.env.POSTGRES_USER || process.env.PGUSERNAME,
       password: process.env.POSTGRES_PASSWORD || process.env.PGPASSWORD,
       database: process.env.POSTGRES_DATABASE || process.env.PGDATABASE,
+      ssl: !process.env.POSTGRES_URL,
       transform: {
         ...postgres.camel,
         undefined: null,

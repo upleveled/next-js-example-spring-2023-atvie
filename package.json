@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@vercel/postgres": "^0.3.0",
+    "camelcase-keys": "^8.0.2",
     "dotenv-cli": "^7.2.1",
     "dotenv-safe": "^8.2.0",
     "ley": "^0.8.1",

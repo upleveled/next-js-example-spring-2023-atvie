@@ -12,6 +12,8 @@ export const dynamic = 'force-dynamic';
 export default async function AnimalsPage() {
   const animals = await getAnimals();
 
+  console.log(animals);
+
   return (
     <main>
       This are my animals

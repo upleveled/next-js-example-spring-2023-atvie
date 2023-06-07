@@ -1,4 +1,5 @@
 import { sql } from '@vercel/postgres';
+import camelcaseKeys from 'camelcase-keys';
 import { cache } from 'react';
 import { Animal } from '../migrations/1684915044-createTableAnimals';
 import {
@@ -28,10 +29,11 @@ import {
 // };
 
 export const getAnimals = cache(async () => {
-  const animals = await sql<Animal[]>`
+  const { rows: animals } = await sql<Animal[]>`
     SELECT * FROM animals
  `;
-  return [...animals];
+
+  return animals.map((animal) => camelcaseKeys(animal));
 });
 
 export const getAnimalsWithLimitAndOffset = cache(

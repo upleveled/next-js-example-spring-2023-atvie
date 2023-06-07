@@ -34,7 +34,6 @@ export const getAnimals = cache(async () => {
   return [...animals];
 });
 
-
 export const getAnimalsWithLimitAndOffset = cache(
   async (limit: number, offset: number) => {
     const animals = await sql<Animal[]>`
@@ -49,7 +48,6 @@ export const getAnimalsWithLimitAndOffset = cache(
     return animals;
   },
 );
-
 
 export const getAnimalById = cache(async (id: number) => {
   const [animal] = await sql<Animal[]>`

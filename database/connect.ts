@@ -1,7 +1,7 @@
 import 'server-only';
 import { config } from 'dotenv-safe';
 import { headers } from 'next/headers';
-import postgres, { ParameterOrFragment } from 'postgres';
+import postgres, { Sql } from 'postgres';
 
 // This loads all environment variables from a .env file
 // for all code after this line
@@ -18,7 +18,7 @@ if (!process.env.FLY_IO) config();
 // });
 
 declare module globalThis {
-  let postgresSqlClient: ReturnType<typeof postgres>;
+  let postgresSqlClient: Sql;
 }
 
 // Connect only once to the database

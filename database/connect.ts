@@ -1,7 +1,7 @@
 import 'server-only';
 import { config } from 'dotenv-safe';
 import { headers } from 'next/headers';
-import postgres from 'postgres';
+import postgres, { ParameterOrFragment } from 'postgres';
 
 // This loads all environment variables from a .env file
 // for all code after this line
@@ -34,7 +34,7 @@ function connectOneTimeToDatabase() {
   }
 
   return <PostgresType extends (Record<string, unknown> | undefined)[]>(
-    ...sqlQuery: [TemplateStringsArray, ...any[]]
+    ...sqlQuery: [TemplateStringsArray, ...ParameterOrFragment<never>[]]
   ) => {
     headers();
     return globalThis.postgresSqlClient!<PostgresType>(...sqlQuery);

@@ -7,16 +7,6 @@ import postgres, { Sql } from 'postgres';
 // for all code after this line
 if (!process.env.FLY_IO) config();
 
-// Making a simple connection to Postgres
-// Next.js fast refresh increases database connection slot
-// and causes connection slot error
-// export const sql = postgres({
-//   transform: {
-//     ...postgres.camel,
-//     undefined: null,
-//   },
-// });
-
 declare module globalThis {
   let postgresSqlClient: Sql;
 }
@@ -33,12 +23,18 @@ function connectOneTimeToDatabase() {
     });
   }
 
-  // Wrap sql tagged template function to include the headers()function calls before each
-  // database operation
-  // This is necessary for Next.js to treat the page importing the database query
-  // function as a dynamic function, rather than a static one, and allows the correct
-  // handling of the pages during server - side rendering and subsequent dynamic
-  // behavior by Next.js
+  // Workaround to force Next.js Dynamic Rendering:
+  //
+  // Wrap sql`` tagged template function to call `headers()` from
+  // next/headers before each database query. `headers()` is a
+  // Next.js Dynamic Function, which causes the page to use
+  // Dynamic Rendering.
+  //
+  // https://nextjs.org/docs/app/building-your-application/rendering/static-and-dynamic-rendering
+  //
+  // Ideally there would something built into Next.js for this,
+  // which has been requested here:
+  //
   // https://github.com/vercel/next.js/discussions/50695
   return ((
     ...sqlParameters: Parameters<typeof globalThis.postgresSqlClient>

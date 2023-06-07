@@ -1,7 +1,7 @@
 const options = {};
 
 if (process.env.POSTGRES_URL) {
-  option.ssl = true;
+  options.ssl = true;
 
   // Set standard environment variables
   process.env.PGHOST = process.env.POSTGRES_HOST;

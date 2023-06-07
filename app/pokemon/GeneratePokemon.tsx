@@ -255,7 +255,6 @@ export default function GeneratePokemon() {
     );
     const data: Pokemon = await response.json();
 
-    console.log(data);
     setPokemon(data.name);
   }
 

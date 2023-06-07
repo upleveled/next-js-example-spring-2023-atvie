@@ -33,8 +33,6 @@ export async function GET(
   const limit = Number(searchParams.get('limit'));
   const offset = Number(searchParams.get('offset'));
 
-  console.log(limit, offset);
-
   if (!limit || !offset) {
     return NextResponse.json(
       {

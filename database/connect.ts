@@ -1,11 +1,10 @@
 import 'server-only';
-import * as vercelPostgres from '@vercel/postgres';
-import { config } from 'dotenv-safe';
-import postgres from 'postgres';
+import { sql } from '@vercel/postgres';
+import camelcaseKeys from 'camelcase-keys';
 
 // This loads all environment variables from a .env file
 // for all code after this line
-if (!process.env.FLY_IO) config();
+// if (!process.env.FLY_IO) config();
 
 // Making a simple connection to Postgres
 // Next.js fast refresh increases database connection slot
@@ -18,23 +17,22 @@ if (!process.env.FLY_IO) config();
 // });
 
 declare module globalThis {
-  let postgresSqlClient: ReturnType<typeof postgres> | undefined;
+  let postgresSqlClient: typeof sql;
 }
 
 // Connect only once to the database
 // https://github.com/vercel/next.js/issues/7811#issuecomment-715259370
 function connectOneTimeToDatabase() {
   if (!globalThis.postgresSqlClient) {
-    globalThis.postgresSqlClient = postgres({
-      transform: {
-        ...postgres.camel,
-        undefined: null,
-      },
-    });
+    globalThis.postgresSqlClient = sql;
   }
-
-  return globalThis.postgresSqlClient;
+  return async <PostgresType extends (Record<string, unknown> | undefined)[]>(
+    ...sqlQuery: [TemplateStringsArray, ...any[]]
+  ) => {
+    const { rows } = await globalThis.postgresSqlClient!(...sqlQuery);
+    return (rows as PostgresType[]).map((row) => camelcaseKeys(row));
+  };
 }
 
 // Connect to PostgreSQL
-export const sql = vercelPostgres.sql;
+export const sqlClient = connectOneTimeToDatabase();

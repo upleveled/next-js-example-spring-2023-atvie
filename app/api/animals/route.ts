@@ -5,9 +5,6 @@ import {
   getAnimalsWithLimitAndOffset,
 } from '../../../database/animals';
 
-// Use 'force-dynamic' on pages using database queries in the server component to prevent your deployment to fail.
-export const dynamic = 'force-dynamic';
-
 export type Animal = {
   id: number;
   firstName: string;

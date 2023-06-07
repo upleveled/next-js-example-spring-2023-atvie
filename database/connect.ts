@@ -1,4 +1,5 @@
 import 'server-only';
+import * as vercelPostgres from '@vercel/postgres';
 import { config } from 'dotenv-safe';
 import postgres from 'postgres';
 
@@ -36,4 +37,4 @@ function connectOneTimeToDatabase() {
 }
 
 // Connect to PostgreSQL
-export const sql = connectOneTimeToDatabase();
+export const sql = vercelPostgres.sql;

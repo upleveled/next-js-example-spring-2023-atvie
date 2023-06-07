@@ -19,6 +19,9 @@ dependencies:
   next:
     specifier: 13.4.4-canary.0
     version: 13.4.4-canary.0(@babel/core@7.21.8)(react-dom@18.2.0)(react@18.2.0)(sass@1.62.1)
+  pg-connection-string:
+    specifier: ^2.6.0
+    version: 2.6.0
   postgres:
     specifier: ^3.3.4
     version: 3.3.4
@@ -1246,7 +1249,7 @@ packages:
       '@ts-safeql/shared': 0.1.1
       '@ts-safeql/test-utils': 0.0.11
       fp-ts: 2.15.0
-      pg-connection-string: 2.5.0
+      pg-connection-string: 2.6.0
       postgres: 3.3.4
     dev: true
 
@@ -1262,7 +1265,7 @@ packages:
     dependencies:
       '@ts-safeql/shared': 0.1.1
       nanoid: 4.0.2
-      pg-connection-string: 2.5.0
+      pg-connection-string: 2.6.0
       postgres: 3.3.4
     dev: true
 
@@ -5522,6 +5525,9 @@ packages:
   /pg-connection-string@2.5.0:
     resolution: {integrity: sha512-r5o/V/ORTA6TmUnyWZR9nCj1klXCO2CEKNRlVuJptZe85QuhFayC7WeMic7ndayT5IRIR0S0xFxFi2ousartlQ==}
     dev: true
+
+  /pg-connection-string@2.6.0:
+    resolution: {integrity: sha512-x14ibktcwlHKoHxx9X3uTVW9zIGR41ZB6QNhHb21OPNdCCO3NaRnpJuwKIQSR4u+Yqjx4HCvy7Hh7VSy1U4dGg==}
 
   /pg-int8@1.0.1:
     resolution: {integrity: sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==}

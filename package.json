@@ -17,6 +17,7 @@
     "dotenv-safe": "^8.2.0",
     "ley": "^0.8.1",
     "next": "13.4.4-canary.0",
+    "pg-connection-string": "^2.6.0",
     "postgres": "^3.3.4",
     "randomcolor": "^0.6.2",
     "react": "18.2.0",

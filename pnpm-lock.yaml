@@ -23,8 +23,8 @@ dependencies:
     specifier: ^2.6.0
     version: 2.6.0
   postgres:
-    specifier: ^3.3.4
-    version: 3.3.4
+    specifier: ^3.3.5
+    version: 3.3.5
   randomcolor:
     specifier: ^0.6.2
     version: 0.6.2
@@ -1231,7 +1231,7 @@ packages:
       fp-ts: 2.15.0
       libpg-query: 15.0.2
       pg-connection-string: 2.5.0
-      postgres: 3.3.4
+      postgres: 3.3.5
       recast: 0.22.0
       synckit: 0.8.5
       ts-pattern: 4.3.0
@@ -1250,14 +1250,14 @@ packages:
       '@ts-safeql/test-utils': 0.0.11
       fp-ts: 2.15.0
       pg-connection-string: 2.6.0
-      postgres: 3.3.4
+      postgres: 3.3.5
     dev: true
 
   /@ts-safeql/shared@0.1.1:
     resolution: {integrity: sha512-Y0umpOfzd3JV85hlR6Ygj2kL0BZh1InTiYMxOUGCReegB5fjSNKmqjzN7MWBBrFs+T7Yhv6lR8RChe9hBXWujQ==}
     dependencies:
       minimatch: 9.0.0
-      postgres: 3.3.4
+      postgres: 3.3.5
     dev: true
 
   /@ts-safeql/test-utils@0.0.11:
@@ -1266,7 +1266,7 @@ packages:
       '@ts-safeql/shared': 0.1.1
       nanoid: 4.0.2
       pg-connection-string: 2.6.0
-      postgres: 3.3.4
+      postgres: 3.3.5
     dev: true
 
   /@types/babel__core@7.20.1:
@@ -5681,8 +5681,8 @@ packages:
     resolution: {integrity: sha512-VdlZoocy5lCP0c/t66xAfclglEapXPCIVhqqJRncYpvbCgImF0w67aPKfbqUMr72tO2k5q0TdTZwCLjPTI6C9g==}
     dev: false
 
-  /postgres@3.3.4:
-    resolution: {integrity: sha512-XVu0+d/Y56pl2lSaf0c7V19AhAEfpVrhID1IENWN8nf0xch6hFq6dAov5dtUX6ZD46wfr1TxvLhxLtV8WnNsOg==}
+  /postgres@3.3.5:
+    resolution: {integrity: sha512-+JD93VELV9gHkqpV5gdL5/70HdGtEw4/XE1S4BC8f1mcPmdib3K5XsKVbnR1XcAyC41zOnifJ+9YRKxdIsXiUw==}
 
   /prebuild-install@7.1.1:
     resolution: {integrity: sha512-jAXscXWMcCK8GgCoHOfIr0ODh5ai8mj63L2nWrjuAgXE6tDyYGnx4/8o/rCgU+B4JSyZBKbeZqzhtwtC3ovxjw==}

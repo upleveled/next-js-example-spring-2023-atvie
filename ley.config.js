@@ -1,16 +1,13 @@
-const options = { ssl: true };
+const options = {};
 
 if (process.env.POSTGRES_URL) {
-  const { parse } = require('pg-connection-string');
-
-  // Extract the connection information from the Heroku environment variable
-  const { host, database, user, password } = parse(process.env.POSTGRES_URL);
+  option.ssl = true;
 
   // Set standard environment variables
-  process.env.PGHOST = host;
-  process.env.PGDATABASE = database;
-  process.env.PGUSERNAME = user;
-  process.env.PGPASSWORD = password;
+  process.env.PGHOST = process.env.POSTGRES_HOST;
+  process.env.PGDATABASE = process.env.POSTGRES_DATABASE;
+  process.env.PGUSERNAME = process.env.POSTGRES_USER;
+  process.env.PGPASSWORD = process.env.POSTGRES_PASSWORD;
 }
 
 module.exports = options;

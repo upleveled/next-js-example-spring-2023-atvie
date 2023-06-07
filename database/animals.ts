@@ -4,10 +4,10 @@ import {
   AnimalFoods,
   AnimalWithFoodsInJsonAgg,
 } from '../migrations/1684924097-createTableAnimalFoods';
-import { sqlClient } from './connect';
+import { sql } from './connect';
 
 export const getAnimals = cache(async () => {
-  const animals = await sqlClient<Animal[]>`
+  const animals = await sql<Animal[]>`
     SELECT * FROM animals
  `;
 
@@ -16,7 +16,7 @@ export const getAnimals = cache(async () => {
 
 export const getAnimalsWithLimitAndOffset = cache(
   async (limit: number, offset: number) => {
-    const animals = await sqlClient<Animal[]>`
+    const animals = await sql<Animal[]>`
       SELECT
         *
       FROM
@@ -30,7 +30,7 @@ export const getAnimalsWithLimitAndOffset = cache(
 );
 
 export const getAnimalById = cache(async (id: number) => {
-  const [animal] = await sqlClient<Animal[]>`
+  const [animal] = await sql<Animal[]>`
     SELECT
       *
     FROM
@@ -43,7 +43,7 @@ export const getAnimalById = cache(async (id: number) => {
 
 export const createAnimal = cache(
   async (firstName: string, type: string, accessory?: string) => {
-    const [animal] = await sqlClient<Animal[]>`
+    const [animal] = await sql<Animal[]>`
       INSERT INTO animals
         (first_name, type, accessory)
       VALUES
@@ -57,7 +57,7 @@ export const createAnimal = cache(
 
 export const updateAnimalById = cache(
   async (id: number, firstName: string, type: string, accessory?: string) => {
-    const [animal] = await sqlClient<Animal[]>`
+    const [animal] = await sql<Animal[]>`
       UPDATE animals
       SET
         first_name = ${firstName},
@@ -73,7 +73,7 @@ export const updateAnimalById = cache(
 );
 
 export const deleteAnimalById = cache(async (id: number) => {
-  const [animal] = await sqlClient<Animal[]>`
+  const [animal] = await sql<Animal[]>`
     DELETE FROM
       animals
     WHERE
@@ -84,7 +84,7 @@ export const deleteAnimalById = cache(async (id: number) => {
 });
 
 export const getAnimalsWithFoods = cache(async (id: number) => {
-  const animalFoods = await sqlClient<AnimalFoods[]>`
+  const animalFoods = await sql<AnimalFoods[]>`
    SELECT
      animals.id AS animal_id,
      animals.first_name AS animal_first_name,
@@ -106,7 +106,7 @@ export const getAnimalsWithFoods = cache(async (id: number) => {
 
 // Join query for getting a single animal with related foods using json_agg
 export const getAnimalWithFoodsById = cache(async (id: number) => {
-  const [animal] = await sqlClient<AnimalWithFoodsInJsonAgg[]>`
+  const [animal] = await sql<AnimalWithFoodsInJsonAgg[]>`
 SELECT
   animals.id AS animal_id,
   animals.first_name AS animal_name,

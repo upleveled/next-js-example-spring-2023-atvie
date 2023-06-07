@@ -33,6 +33,12 @@ function connectOneTimeToDatabase() {
     });
   }
 
+  // Wrap ...
+  //
+  //
+  //
+  //
+  // https://github.com/vercel/next.js/discussions/...
   return ((
     ...sqlParameters: Parameters<typeof globalThis.postgresSqlClient>
   ) => {

@@ -1,4 +1,4 @@
-const options = { ssl: process.env.NODE_ENV === 'production' };
+const options = { ssl: true };
 
 if (process.env.POSTGRES_URL) {
   const { parse } = require('pg-connection-string');

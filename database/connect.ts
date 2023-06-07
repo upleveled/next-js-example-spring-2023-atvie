@@ -33,12 +33,13 @@ function connectOneTimeToDatabase() {
     });
   }
 
-  // Wrap ...
-  //
-  //
-  //
-  //
-  // https://github.com/vercel/next.js/discussions/...
+  // Wrap sql tagged template function to include the headers()function calls before each
+  // database operation
+  // This is necessary for Next.js to treat the page importing the database query
+  // function as a dynamic function, rather than a static one, and allows the correct
+  // handling of the pages during server - side rendering and subsequent dynamic
+  // behavior by Next.js
+  // https://github.com/vercel/next.js/discussions/50695
   return ((
     ...sqlParameters: Parameters<typeof globalThis.postgresSqlClient>
   ) => {

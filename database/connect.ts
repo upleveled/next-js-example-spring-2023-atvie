@@ -18,13 +18,13 @@ if (!process.env.FLY_IO) config();
 // });
 
 declare module globalThis {
-  let postgresSqlClient: ReturnType<typeof postgres> | undefined;
+  let postgresSqlClient: ReturnType<typeof postgres>;
 }
 
 // Connect only once to the database
 // https://github.com/vercel/next.js/issues/7811#issuecomment-715259370
 function connectOneTimeToDatabase() {
-  if (!globalThis.postgresSqlClient) {
+  if (!('postgresSqlClient' in globalThis)) {
     globalThis.postgresSqlClient = postgres({
       transform: {
         ...postgres.camel,
@@ -37,7 +37,7 @@ function connectOneTimeToDatabase() {
     ...sqlQuery: [TemplateStringsArray, ...ParameterOrFragment<never>[]]
   ) => {
     headers();
-    return globalThis.postgresSqlClient!<PostgresType>(...sqlQuery);
+    return globalThis.postgresSqlClient<PostgresType>(...sqlQuery);
   };
 }
 

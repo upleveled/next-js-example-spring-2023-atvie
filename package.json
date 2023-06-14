@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@vercel/postgres": "^0.3.0",
+    "bcrypt": "^5.1.0",
     "camelcase-keys": "^8.0.2",
     "dotenv-cli": "^7.2.1",
     "dotenv-safe": "^8.2.0",
@@ -30,6 +31,7 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@jest/globals": "^29.5.0",
     "@playwright/test": "^1.34.3",
     "@ts-safeql/eslint-plugin": "^1.1.3",

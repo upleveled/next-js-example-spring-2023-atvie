@@ -94,4 +94,11 @@ type Error = {
  - PUT =>       animal   | error
  - DELETE =>    animal   | error
  - GET =>       animal   | error
+
+/register
+ - POST => user | error
+
+/login
+ - POST => user | error
+
 ```

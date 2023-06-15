@@ -3,6 +3,12 @@
   padding: 5px;
   display: flex;
   gap: 1rem;
+  justify-content: space-between;
+
+  div {
+    display: flex;
+    gap: 1rem;
+  }
 
   a {
     background-color: transparent;

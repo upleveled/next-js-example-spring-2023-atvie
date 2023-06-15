@@ -1,12 +1,13 @@
 'use client';
 
+import { Route } from 'next';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { getSafeReturnToPath } from '../../../util/validation';
 import { LoginResponseBodyPost } from '../../api/(auth)/login/route';
 import styles from './LoginForm.module.scss';
 
-type Props = { returnTo?: string };
+type Props = { returnTo?: string | string[] };
 
 export default function LoginForm(props: Props) {
   const [username, setUsername] = useState('');
@@ -28,7 +29,10 @@ export default function LoginForm(props: Props) {
       return;
     }
 
-    router.push(getSafeReturnToPath(props.returnTo) || `/profile/${data.user.username}`);
+    router.push(
+      getSafeReturnToPath(props.returnTo) ||
+        (`/profile/${data.user.username}` as Route),
+    );
     // we may have in the future revalidatePath()
     router.refresh();
   }

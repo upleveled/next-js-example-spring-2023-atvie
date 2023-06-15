@@ -2,8 +2,6 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getAnimalById } from '../../../database/animals';
 
-export const dynamic = 'force-dynamic';
-
 type Props = {
   params: {
     animalId: string;

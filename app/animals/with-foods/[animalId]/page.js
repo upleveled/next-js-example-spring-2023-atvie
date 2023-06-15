@@ -7,8 +7,6 @@ import {
 } from '../../../../database/animals';
 import { getAnimalWithFoods } from '../../../../util/dataStructure';
 
-export const dynamic = 'force-dynamic';
-
 export default async function AnimalPage({ params }) {
   const singleAnimal = await getAnimalById(Number(params.animalId));
   const animalsFoods = await getAnimalsWithFoods(Number(params.animalId));

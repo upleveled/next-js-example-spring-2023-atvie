@@ -21,14 +21,13 @@ export default function RegisterForm() {
 
     if ('error' in data) {
       setError(data.error);
+      return;
     }
 
-    if ('user' in data) {
-      console.log(data.user);
-      router.push(`/profile/${data.user.username}`);
-      // we may have in the future revalidatePath()
-      router.refresh();
-    }
+    console.log(data.user);
+    router.push(`/profile/${data.user.username}`);
+    // we may have in the future revalidatePath()
+    router.refresh();
   }
 
   return (

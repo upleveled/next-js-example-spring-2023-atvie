@@ -1,4 +1,5 @@
 'use client';
+
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { RegisterResponseBodyPost } from '../../api/(auth)/register/route';

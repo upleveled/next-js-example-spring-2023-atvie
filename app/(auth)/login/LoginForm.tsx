@@ -24,21 +24,12 @@ export default function LoginForm(props: Props) {
     if ('error' in data) {
       setError(data.error);
       console.log(data.error);
+      return;
     }
 
-    if ('user' in data) {
-      const returnTo = getSafeReturnToPath(props.returnTo);
-
-      // if the url contain a returnTo query param i want to redirect there instead
-      if (returnTo) {
-        router.push(returnTo);
-        return;
-      }
-      console.log(data.user);
-      router.push(`/profile/${data.user.username}`);
-      // we may have in the future revalidatePath()
-      router.refresh();
-    }
+    router.push(getSafeReturnToPath(props.returnTo) || `/profile/${data.user.username}`);
+    // we may have in the future revalidatePath()
+    router.refresh();
   }
 
   return (

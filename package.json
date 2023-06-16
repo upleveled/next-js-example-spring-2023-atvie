@@ -42,7 +42,7 @@
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
     "libpg-query": "^15.0.2",
-    "stylelint": "^15.6.2",
+    "stylelint": "^15.7.0",
     "stylelint-config-upleveled": "^1.0.2",
     "typescript": "^5.0.4"
   }

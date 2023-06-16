@@ -3,6 +3,7 @@ import { Roboto_Mono } from 'next/font/google';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
 import { getUserBySessionToken } from '../database/users';
+import { logout } from './(auth)/logout/actions';
 import { CookieBanner } from './CookieBanner';
 import style from './layout.module.scss';
 import { LogoutButton } from './LogoutButton';
@@ -42,7 +43,7 @@ export default async function RootLayout({ children }) {
             {user ? (
               <>
                 <div>{user.username}</div>
-                <LogoutButton />
+                <LogoutButton logout={logout} />
               </>
             ) : (
               <>

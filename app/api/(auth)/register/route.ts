@@ -4,11 +4,8 @@ import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { createSession } from '../../../../database/sessions';
-import {
-  createUser,
-  getUserByUsername,
-  User,
-} from '../../../../database/users';
+import { createUser, getUserByUsername } from '../../../../database/users';
+import { User } from '../../../../migrations/1686731462-createUsers';
 import { secureCookieOptions } from '../../../../util/cookies';
 
 type Error = {

@@ -13,7 +13,7 @@ import postgres, { Sql } from 'postgres';
 //   },
 // });
 
-if (!process.env.POSTGRES_URL) {
+if (!process.env.FLY_IO) {
   config();
 }
 

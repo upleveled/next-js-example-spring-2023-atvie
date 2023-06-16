@@ -45,7 +45,9 @@ test('navigation test', async ({ page }) => {
   await expect(page.getByAltText('cat sleeping').first()).toBeVisible();
 
   await page.getByRole('link', { name: 'animals' }).click();
-  await expect(page).toHaveURL(
+  await expect(page).toHaveURL('http://localhost:3000/login?returnTo=/animals');
+
+  await page.goto(
     'http://localhost:3000/animal-management-naive-dont-copy/read',
   );
 

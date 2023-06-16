@@ -1,10 +1,14 @@
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { getAnimals } from '../../database/animals';
 import { getValidSessionByToken } from '../../database/sessions';
-import AnimalsForm from './AnimalsForm';
 
-export default async function AnimalsAdminPage() {
+type Props = {
+  children: React.ReactNode;
+};
+
+export default async function AnimalsLayout(props: Props) {
+  const headersList = headers();
+
   // 1. Check if the sessionToken cookie exit
   const sessionTokenCookie = cookies().get('sessionToken');
 
@@ -15,9 +19,7 @@ export default async function AnimalsAdminPage() {
     (await getValidSessionByToken(sessionTokenCookie.value));
 
   // 3. Either redirect or render the login form
-  if (!session) redirect('/login?returnTo=/animals-admin');
+  if (!session) redirect(`/login?returnTo=${headersList.get('x-pathname')}`);
 
-  const animals = await getAnimals();
-
-  return <AnimalsForm animals={animals} />;
+  return props.children;
 }

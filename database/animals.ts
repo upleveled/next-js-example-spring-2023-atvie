@@ -29,6 +29,33 @@ export const getAnimalsWithLimitAndOffset = cache(
   },
 );
 
+export const getAnimalsWithLimitAndOffsetBySessionToken = cache(
+  async (limit: number, offset: number, token: string) => {
+    const animals = await sql<Animal[]>`
+      SELECT
+        animals.*
+      FROM
+        animals
+      INNER JOIN
+        sessions ON (
+          sessions.token = ${token} AND
+          sessions.expiry_timestamp > now()
+          -- sessions.user_id = animals.user_id
+        )
+      -- This would JOIN the users table that is related to animals
+      -- INNER JOIN
+      --   users ON (
+      --     users.id = animals.user_id AND
+      --     sessions.user_id = users.id
+      --   )
+      LIMIT ${limit}
+      OFFSET ${offset}
+    `;
+
+    return animals;
+  },
+);
+
 export const getAnimalById = cache(async (id: number) => {
   const [animal] = await sql<Animal[]>`
     SELECT

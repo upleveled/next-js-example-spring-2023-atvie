@@ -6,6 +6,7 @@ import {
   getAnimalsWithLimitAndOffsetBySessionToken,
 } from '../../../database/animals';
 import { getValidSessionByToken } from '../../../database/sessions';
+import { validateTokenAgainstSecret } from '../../../util/csrf';
 
 export type Animal = {
   id: number;
@@ -25,6 +26,7 @@ const animalSchema = z.object({
   firstName: z.string(),
   type: z.string(),
   accessory: z.string().optional(),
+  csrfToken: z.string(),
 });
 
 export async function GET(
@@ -91,6 +93,36 @@ export async function POST(
       { status: 400 },
     );
   }
+
+  // validate the csrf token with the secret in the session
+  // 1. Check if the sessionToken cookie exit
+  const sessionTokenCookie = cookies().get('sessionToken');
+
+  // 2. check if the sessionToken has a valid session
+
+  const session =
+    sessionTokenCookie &&
+    (await getValidSessionByToken(sessionTokenCookie.value));
+
+  if (!session) {
+    return NextResponse.json(
+      {
+        error: 'not a valid session',
+      },
+      { status: 401 },
+    );
+  }
+
+  // validate a csrf token against a secret/seed in the sessions table
+  if (!validateTokenAgainstSecret(session.csrfSecret, result.data.csrfToken)) {
+    return NextResponse.json(
+      {
+        error: 'not a valid csrf token',
+      },
+      { status: 401 },
+    );
+  }
+
   // query the database to get all the animals
   const animal = await createAnimal(
     result.data.firstName,

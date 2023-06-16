@@ -7,6 +7,7 @@ import { createSession } from '../../../../database/sessions';
 import { getUserWithPasswordHashByUsername } from '../../../../database/users';
 import { User } from '../../../../migrations/1686731462-createUsers';
 import { secureCookieOptions } from '../../../../util/cookies';
+import { createCsrfSecret } from '../../../../util/csrf';
 
 type Error = {
   error: string;
@@ -78,9 +79,16 @@ export async function POST(
 
   // 4. Create a token
   const token = crypto.randomBytes(100).toString('base64');
-  // 5. Create the session record
 
-  const session = await createSession(token, userWithPasswordHash.id);
+  // 5. create a csrf seed
+  const csrfSecret = createCsrfSecret();
+  // 6. Create the session record
+
+  const session = await createSession(
+    token,
+    userWithPasswordHash.id,
+    csrfSecret,
+  );
 
   if (!session) {
     return NextResponse.json(

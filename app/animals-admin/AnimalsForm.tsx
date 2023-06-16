@@ -5,9 +5,10 @@ import styles from './AnimalsForm.module.scss';
 
 type Props = {
   animals: Animal[];
+  csrfToken: string;
 };
 
-export default function AnimalsForm({ animals }: Props) {
+export default function AnimalsForm({ animals, csrfToken }: Props) {
   const [animalList, setAnimalList] = useState(animals);
   const [firstNameInput, setFirstNameInput] = useState('');
   const [typeInput, setTypeInput] = useState('');
@@ -26,6 +27,7 @@ export default function AnimalsForm({ animals }: Props) {
         firstName: firstNameInput,
         type: typeInput,
         accessory: accessoryInput,
+        csrfToken: csrfToken,
       }),
     });
 
@@ -68,6 +70,10 @@ export default function AnimalsForm({ animals }: Props) {
 
   return (
     <div className={styles.inputDiv}>
+      CSRF: token changing on every page render: <code />
+      {csrfToken}
+      <code />
+      <br />
       <label>
         <input
           value={firstNameInput}
@@ -98,7 +104,6 @@ export default function AnimalsForm({ animals }: Props) {
       >
         create +
       </button>
-
       {animalList.map((animal) => {
         return (
           <div key={`animal-inputs-${animal.id}`} className={styles.inputDiv}>

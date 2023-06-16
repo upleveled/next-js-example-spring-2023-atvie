@@ -21,5 +21,5 @@ export default async function AnimalsLayout(props: Props) {
   // 3. Either redirect or render the login form
   if (!session) redirect(`/login?returnTo=${headersList.get('x-pathname')}`);
 
-  return <> {props.children} </>;
+  return <div>{props.children}</div>;
 }

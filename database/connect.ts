@@ -3,19 +3,7 @@ import { config } from 'dotenv-safe';
 import { headers } from 'next/headers';
 import postgres, { Sql } from 'postgres';
 
-// Making a simple connection to Postgres
-// Next.js fast refresh increases database connection slot
-// and causes connection slot error
-// export const sql = postgres({
-//   transform: {
-//     ...postgres.camel,
-//     undefined: null,
-//   },
-// });
-
-if (!process.env.FLY_IO) {
-  config();
-}
+if (!process.env.FLY_IO) config();
 
 declare module globalThis {
   let postgresSqlClient: Sql;

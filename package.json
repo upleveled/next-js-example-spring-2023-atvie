@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "ley-new": "f(){ touch migrations/$(date +%s)-$1.ts; }; f",
-    "migrate": "dotenv -- ley --require tsm"
+    "migrate": "ley --require tsm"
   },
   "dependencies": {
     "@vercel/postgres": "^0.3.0",

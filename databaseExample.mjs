@@ -1,7 +1,9 @@
-import { config } from 'dotenv-safe';
 import postgres from 'postgres';
+import { setEnvironmentVariables } from './ley.config.mjs';
 
-config();
+// This loads all environment variables from a .env file
+// for all code after this line
+setEnvironmentVariables();
 
 const sql = postgres();
 

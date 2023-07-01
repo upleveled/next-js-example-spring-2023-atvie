@@ -1,6 +1,5 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { ChangeEvent, useState } from 'react';
 import { createOrUpdateComment } from './actions';
 import style from './FruitCommentForm.module.scss';
@@ -16,7 +15,6 @@ export default function FruitCommentForm(props: Props) {
   // If you need to have a type parameter for the useState (either
   // undefined or a string)
   // const [comment, setComment] = useState<undefined | string>();
-  const router = useRouter();
 
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
     setComment(event.currentTarget.value);
@@ -36,7 +34,6 @@ export default function FruitCommentForm(props: Props) {
       <button
         className={style.button}
         formAction={async () => {
-          router.refresh();
           await createOrUpdateComment(props.fruitId, comment);
         }}
       >

@@ -5,7 +5,6 @@ import { setEnvironmentVariables } from '../util/config.mjs';
 
 setEnvironmentVariables();
 
-// Type needed for assigning `globalThis.postgresSqlClient` in `connectOneTimeToDatabase`
 declare module globalThis {
   let postgresSqlClient: Sql;
 }

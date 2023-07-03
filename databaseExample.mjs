@@ -1,8 +1,6 @@
 import postgres from 'postgres';
-import { setEnvironmentVariables } from './ley.config.mjs';
+import { setEnvironmentVariables } from './util/config.mjs';
 
-// This loads all environment variables from a .env file
-// for all code after this line
 setEnvironmentVariables();
 
 const sql = postgres();

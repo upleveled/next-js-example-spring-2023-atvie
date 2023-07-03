@@ -1,4 +1,4 @@
-import fs from 'node:fs';
+import { readFileSync } from 'node:fs';
 import dotenv from 'dotenv';
 
 export function setEnvironmentVariables() {
@@ -21,7 +21,7 @@ export function setEnvironmentVariables() {
   dotenv.config();
 
   const unconfiguredEnvVars = Object.keys(
-    dotenv.parse(fs.readFileSync('./.env.example')),
+    dotenv.parse(readFileSync('./.env.example')),
   ).filter((exampleKey) => !process.env[exampleKey]);
 
   if (unconfiguredEnvVars.length > 0) {

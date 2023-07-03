@@ -1,7 +1,7 @@
-import { config } from 'dotenv-safe';
 import postgres from 'postgres';
+import { setEnvironmentVariables } from './util/config.mjs';
 
-config();
+setEnvironmentVariables();
 
 const sql = postgres();
 

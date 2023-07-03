@@ -11,13 +11,11 @@
     "migrate": "ley --require tsm"
   },
   "dependencies": {
-    "@vercel/postgres": "^0.3.0",
     "bcrypt": "^5.1.0",
     "camelcase-keys": "^8.0.2",
     "dotenv": "^16.3.1",
     "ley": "^0.8.1",
-    "next": "13.4.7-canary.1",
-    "pg-connection-string": "^2.6.0",
+    "next": "13.4.7",
     "postgres": "^3.3.5",
     "randomcolor": "^0.6.2",
     "react": "18.2.0",

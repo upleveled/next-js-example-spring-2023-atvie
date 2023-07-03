@@ -5,7 +5,7 @@ import { setEnvironmentVariables } from '../ley.config.mjs';
 // for all code after this line
 setEnvironmentVariables();
 
-// Type needed for the connection function below
+// Type needed for assigning `globalThis.postgresSqlClient` in `connectOneTimeToDatabase`
 declare module globalThis {
   let postgresSqlClient: ReturnType<typeof postgres> | undefined;
 }

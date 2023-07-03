@@ -1,4 +1,5 @@
-import postgres from 'postgres';
+import { headers } from 'next/headers';
+import postgres, { Sql } from 'postgres';
 import { setEnvironmentVariables } from '../util/config.mjs';
 
 // This loads all environment variables from a .env file
@@ -7,13 +8,13 @@ setEnvironmentVariables();
 
 // Type needed for assigning `globalThis.postgresSqlClient` in `connectOneTimeToDatabase`
 declare module globalThis {
-  let postgresSqlClient: ReturnType<typeof postgres> | undefined;
+  let postgresSqlClient: Sql;
 }
 
 // Connect only once to the database
 // https://github.com/vercel/next.js/issues/7811#issuecomment-715259370
 function connectOneTimeToDatabase() {
-  if (!globalThis.postgresSqlClient) {
+  if (!('postgresSqlClient' in globalThis)) {
     globalThis.postgresSqlClient = postgres({
       ssl: Boolean(process.env.POSTGRES_URL),
       transform: {
@@ -22,7 +23,12 @@ function connectOneTimeToDatabase() {
       },
     });
   }
-  return globalThis.postgresSqlClient;
+  return ((
+    ...sqlParameters: Parameters<typeof globalThis.postgresSqlClient>
+  ) => {
+    headers();
+    return globalThis.postgresSqlClient(...sqlParameters);
+  }) as typeof globalThis.postgresSqlClient;
 }
 
 // Connect to PostgreSQL

@@ -2,8 +2,6 @@ import { headers } from 'next/headers';
 import postgres, { Sql } from 'postgres';
 import { setEnvironmentVariables } from '../util/config.mjs';
 
-// This loads all environment variables from a .env file
-// for all code after this line
 setEnvironmentVariables();
 
 // Type needed for assigning `globalThis.postgresSqlClient` in `connectOneTimeToDatabase`

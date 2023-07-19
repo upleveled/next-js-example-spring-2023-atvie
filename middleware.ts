@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export const config = {
-  matcher: '/animals/:path*',
+  matcher: '/animal-management-naive-dont-copy/:path*',
 };
 
 export function middleware(request: NextRequest) {

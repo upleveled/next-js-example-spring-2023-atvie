@@ -45,11 +45,11 @@ test('navigation test', async ({ page }) => {
   await expect(page.getByAltText('cat sleeping').first()).toBeVisible();
 
   await page.getByRole('link', { name: 'animals' }).click();
+  await expect(page).toHaveURL('http://localhost:3000/login?returnTo=/animals');
 
   await expect(page.getByText('This are my animals')).toBeVisible();
   // use caret ^ to find all elements with data-test-id=animal-type
   await expect(page.locator('[data-test-id^="animal-type-"]')).toHaveCount(5);
-  await expect(page).toHaveURL('http://localhost:3000/login?returnTo=/animals');
 
   await expect(page.locator('[data-test-id^="animal-type-"]')).toHaveText(
     animals.map((animal) => animal.firstName),

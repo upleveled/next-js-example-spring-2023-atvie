@@ -4,9 +4,9 @@ import { cookies } from 'next/headers';
 import Link from 'next/link';
 import { ReactNode } from 'react';
 import { getUserBySessionToken } from '../database/users';
+import { logout } from './(auth)/logout/actions';
 import { CookieBanner } from './CookieBanner';
-import style from './layout.module.scss';
-import { LogoutButton } from './LogoutButton';
+import styles from './layout.module.scss';
 
 export const robotoMono = Roboto_Mono({
   subsets: ['latin'],
@@ -35,7 +35,7 @@ export default async function RootLayout({ children }: Props) {
     <html lang="en" className={robotoMono.className}>
       <body style={{ backgroundColor: 'rgb(0, 31, 57)' }}>
         <CookieBanner />
-        <nav className={style.navigator}>
+        <nav className={styles.navigator}>
           <div>
             <Link href="/">home</Link> <Link href="/animals">animals</Link>{' '}
             <Link href="/fruits">fruits</Link>
@@ -47,7 +47,11 @@ export default async function RootLayout({ children }: Props) {
             {user ? (
               <>
                 <div>{user.username}</div>
-                <LogoutButton />
+                <form>
+                  <button className={styles.logoutButton} formAction={logout}>
+                    logout
+                  </button>
+                </form>
               </>
             ) : (
               <>

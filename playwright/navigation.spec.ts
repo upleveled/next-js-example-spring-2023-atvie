@@ -45,7 +45,7 @@ test('navigation test', async ({ page }) => {
   await expect(page.getByAltText('cat sleeping').first()).toBeVisible();
 
   await page.getByRole('link', { name: 'animals' }).click();
-  await expect(page).toHaveURL('http://localhost:3000/login?returnTo=/animals');
+  await expect(page).toHaveURL('http://localhost:3000/animals');
 
   await expect(page.getByText('This are my animals')).toBeVisible();
   // use caret ^ to find all elements with data-test-id=animal-type

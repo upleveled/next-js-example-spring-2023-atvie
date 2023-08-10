@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
-    "camelcase-keys": "^8.0.2",
     "dotenv": "^16.3.1",
     "ley": "^0.8.1",
     "next": "13.4.14-canary.1",

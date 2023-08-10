@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals';
-import { getAnimalWithFoods } from '../dataStructure';
+import { getAnimalWithFoods } from '../dataStructures';
 
 test('reduces animal favorite food', () => {
   const animalWithFoods = [

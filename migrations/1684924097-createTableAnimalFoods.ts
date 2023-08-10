@@ -16,16 +16,14 @@ export type AnimalFoods = {
   foodType: string;
 };
 
-type JsonAgg = {
-  id: number;
-};
+type JsonAgg = Food[];
 
 export type AnimalWithFoodsInJsonAgg = {
   animalId: number;
   animalName: string;
   animalType: string;
   animalAccessory: string | null;
-  animalFoods: JsonAgg;
+  animalFoods: JsonAgg | null;
 };
 
 export async function up(sql: Sql) {

@@ -3,18 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "./node_modules/.bin/next start",
-    "lint": "next lint",
+    "dev": "next dev",
     "ley-new": "f(){ touch migrations/$(date +%s)-$1.ts; }; f",
-    "migrate": "ley --require tsm"
+    "lint": "next lint",
+    "migrate": "ley --require tsm",
+    "start": "./node_modules/.bin/next start"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
     "dotenv": "^16.3.1",
     "ley": "^0.8.1",
-    "next": "13.4.14-canary.1",
+    "next": "13.4.20-canary.3",
     "postgres": "^3.3.5",
     "randomcolor": "^0.6.2",
     "react": "18.2.0",

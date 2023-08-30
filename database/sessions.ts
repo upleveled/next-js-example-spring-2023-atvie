@@ -23,7 +23,6 @@ export const createSession = cache(async (token: string, userId: number) => {
       user_id
   `;
 
-  // delete all sessions that are expired
   await deleteExpiredSessions();
 
   return session;

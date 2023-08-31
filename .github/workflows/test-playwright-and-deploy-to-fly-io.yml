@@ -5,6 +5,7 @@ jobs:
   playwright-tests:
     name: Playwright Tests
     runs-on: ubuntu-latest # or macos-latest, windows-latest
+    # Update env variables with your own database credentials
     env:
       PGHOST: localhost
       PGDATABASE: next_js_example_spring_2023

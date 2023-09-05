@@ -67,7 +67,7 @@ psql -U <user name> <database name>
 sudo -u <user name> psql -U <user name> <database name>
 ```
 
-# API DESIGN
+# API Design
 
 ```ts
 type Animal = {

@@ -15,7 +15,7 @@ dependencies:
     specifier: ^0.8.1
     version: 0.8.1
   next:
-    specifier: v13.4.20-canary.16
+    specifier: 13.4.20-canary.16
     version: 13.4.20-canary.16(@babel/core@7.21.8)(react-dom@18.2.0)(react@18.2.0)(sass@1.65.1)
   postgres:
     specifier: ^3.3.5

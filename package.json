@@ -8,7 +8,7 @@
     "ley-new": "f(){ touch migrations/$(date +%s)-$1.ts; }; f",
     "lint": "next lint",
     "migrate": "ley --require tsm",
-    "start": "./node_modules/.bin/next start"
+    "start": "next start"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
